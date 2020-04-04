@@ -15,4 +15,4 @@ require_once ADMIN_SCRIPT_PATH.'/read.php'; //simplifying the paths here
 require_once ADMIN_SCRIPT_PATH.'/login.php'; //simplifying the paths here
 require_once ADMIN_SCRIPT_PATH.'/functions.php'; //simplifying the paths here
 require_once ADMIN_SCRIPT_PATH.'/user.php'; //simplifying the paths here
-
+// require_once ADMIN_SCRIPT_PATH.'/movie.php';

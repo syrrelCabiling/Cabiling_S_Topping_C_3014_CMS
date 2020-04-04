@@ -16,11 +16,11 @@ $product = new product($db);
 
 // THis is where users can search for a product
 if (isset($_GET['id'])) {
-    $stmt = $movie->getProductByID($_GET['id']);
+    $stmt = $product->getProductByID($_GET['id']);
 } else if(isset($_GET['category'])){
-    $stmt = $product->getProductByCategory($_GET['category']);
+    $stmt = $product->getProductsByCategory($_GET['category']);
 }else {
-    $stmt = $movie->getProducts();
+    $stmt = $product->getProducts();
 }
 
 $num = $stmt->rowCount();
@@ -32,7 +32,7 @@ if ($num > 0) {
     $results = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $single_product = $row;
+        $getSingleProduct = $row;
         $results[]    = $single_product;
     }
 
