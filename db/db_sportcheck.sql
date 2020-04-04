@@ -1,0 +1,457 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:8889
+-- Generation Time: Apr 04, 2020 at 01:10 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.3.8
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `db_sportcheck`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_categories`
+--
+
+CREATE TABLE `tbl_categories` (
+  `category_id` int(11) NOT NULL,
+  `category` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_categories`
+--
+
+INSERT INTO `tbl_categories` (`category_id`, `category`) VALUES
+(1, 'Running Shoes'),
+(2, 'Shorts'),
+(3, 'Sports Bras'),
+(4, 'Jackets'),
+(5, 'Swim'),
+(6, 'Accessories'),
+(7, 'Fitness Trackers');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_colours`
+--
+
+CREATE TABLE `tbl_colours` (
+  `colour_id` int(11) NOT NULL,
+  `colour` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_colours`
+--
+
+INSERT INTO `tbl_colours` (`colour_id`, `colour`) VALUES
+(1, 'Black'),
+(2, 'Gray'),
+(3, 'White'),
+(4, 'Pink'),
+(5, 'Blue');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_prices`
+--
+
+CREATE TABLE `tbl_prices` (
+  `price_id` int(11) NOT NULL,
+  `price` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_prices`
+--
+
+INSERT INTO `tbl_prices` (`price_id`, `price`) VALUES
+(1, '$65.99'),
+(2, '$74.99'),
+(3, '$219.99'),
+(4, '$99.99'),
+(5, '$149.99'),
+(6, '$22.50'),
+(7, '$22.49'),
+(8, '$26.25'),
+(9, ' $15.97'),
+(10, '$22.97'),
+(11, '$50.97'),
+(12, '$29.99'),
+(13, '$34.50'),
+(14, '$26.24'),
+(15, '$20.97'),
+(16, '$109.99'),
+(17, '$184.99'),
+(18, '$399.99'),
+(19, '$200'),
+(20, ' $219.99'),
+(21, ' $45'),
+(22, '$39.97'),
+(23, '$62.97'),
+(24, '$49.98'),
+(25, '$53.97'),
+(26, '$34.99'),
+(27, '$19.99'),
+(28, '$34.99'),
+(29, '$12.75'),
+(30, '$37.99'),
+(31, '$249.95'),
+(32, '$199.95'),
+(33, '$99.99'),
+(34, '$529'),
+(35, '$279.95');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_products`
+--
+
+CREATE TABLE `tbl_products` (
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(250) NOT NULL,
+  `product_img` varchar(100) NOT NULL,
+  `product_desc` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_products`
+--
+
+INSERT INTO `tbl_products` (`product_id`, `product_name`, `product_img`, `product_desc`) VALUES
+(1, 'Nike Women\'s Revolution 5 Running Shoes', 'shoes1.jpg', 'The Nike Women’s Revolution 5 Running Shoe cushions your stride with soft foam to keep you running in comfort. Lightweight knit material wraps your foot in breathable support, while a minimalist design fits in anywhere your day takes you.\r\n'),
+(2, 'Nike Women\'s Renew Arena Running Shoes', 'shoes2.jpg', 'The Nike Renew Arena Men’s Running Shoe wraps your foot in a versatile woven material that outperforms your run. The supportive upper offers miles of comfort, while the lightweight Nike Renew technology underfoot gives a smooth, stable ride.\r\n'),
+(3, 'ASICS Women\'s GEL Kayano 26 Running Shoes\r\n', 'shoes3.jpg', 'Boost your performance in bold style with the GEL-KAYANO™ 26 Platinum running shoe from ASICS. This special edition take on our classic stability running shoe features the same performance-enhancing technologies in an eye-catching, futuristic design. \r\n'),
+(4, 'Saucony Women\'s Shift Trail Running Shoes', 'shoes4.jpg', 'Take this show off road. For whatever path you lead, the rugged utility of the Saucony Women’s Shift Trail Running Shoe has you covered in trailblazing style. \r\n'),
+(5, 'Merrell Women\'s Antora Trail Running Shoes', 'shoes5.jpg', 'Designed specifically for women, this protective trail runner is made with Q FORM® 2 stability technology and a Vibram® outsole for confidence on moderate terrain.\r\n'),
+(6, 'Nike Dry Women\'s Attack Shorts', 'shorts1.png', 'The Nike Dri-FIT Shorts are made with sweat-wicking jersey fabric to help you stay dry and comfortable throughout your workout.\r\n'),
+(7, 'Under Armour Women\'s Play UP 3.0 Shorts', 'shorts2.png', 'Before you hit the playing field, pull on the Under Armour Women’s Play UP 3.0 Shorts to stay comfortable, cool and focused.\r\n'),
+(8, 'Nike Pro Women\'s 3\" Shorts', 'shorts3.png', 'The Nike Pro Shorts are a versatile base layer with Dri-FIT technology to wick sweat when you go hard. A wide elastic waistband has a snug, comfortable fit.\r\n'),
+(9, 'Nike Women\'s Crew Shorts', 'shorts4.png', 'Stay cool and dry as you run your route in the Nike Dri-FIT Shorts. A wide waistband and stretchy side panels move with your body, while an all-over petal print invigorates your run.\r\n'),
+(10, 'PUMA Women\'s Clash Printed Shorts', 'shorts5.png', 'Loud and unapologetic, the PUMA Clash Shorts are go to’s for active street style.\r\n'),
+(11, 'Nike Pro Women\'s Alpha High Sports Bra', 'bra1.png', 'Nike Alpha Women’s High Support Sports Bra features molded cups for an encapsulated fit. Designed for high-impact activities like basketball and soccer, the Nike Alpha offers a modified racerback design for a natural range of motion.\r\n'),
+(12, 'Under Armour Women\'s Armour Crossback Sports\r\n', 'bra2.png', 'Unique strap design delivers extra support in all the right places in the UA Armour Crossback Sports Bra so you can finish just as strong as you started.\r\n'),
+(13, 'Nike Women\'s Classic Sports Bra', 'bra3.png', 'The Nike Swoosh Sports Bra gives you classic coverage and medium support for activities like spin, cardio and dance classes. The removable padding has been redesigned to reliably stay in place while you work out. The removable 1-piece pad is designed to resist shifting or folding for a reliably comfortable fit. The pad pocket opens from the top and can fit a phone.'),
+(14, 'Under Armour Women\'s Armour Medium No Padded Adjustable Bra', 'bra4.png', 'Under Armour Women’s Armour Medium No Padded Adjustable Bra is tailored for medium-support activities like cycling, weight training & boxing. It comes with ultra-tight, second-skin fit and features HeatGear® fabric for superior next-to-skin feel.\r\n'),
+(15, 'Nike Pro Classic Padded Women\'s Bra', 'bra5.png', 'Women’s Nike Pro Classic Padded Sports Bra offers medium support for a variety of training activities. It’s lightly padded for enhanced coverage and shaping so you can tackle your workout with confidence.\r\n'),
+(16, 'Columbia Women\'s Arcadia II 2L Shell Jacket', 'jacket1.png', 'You’ll be prepared for wet conditions with this shell jacket by Columbia. With an adjustable hood and drawcord waist, rain and cold are kept at bay for optimal warmth. Zippered hand pockets keep essentials safe and protected, and when the weather improves, fold this jacket down and store it in an area as small as a hand pocket.\r\n'),
+(17, 'Helly Hansen Women\'s Long Belfast Shell Jacket', 'jacket2.png', 'This design gives you a long rain coat with sporty detailing. A nice cut and full HELLY TECH® Protection gives you a coat you’ll get to love and trust to keep you dry from the rain.\r\n'),
+(18, 'The North Face Women\'s Arctic Down Parka\r\n', 'jacket3.png', ' Make tracks and set trends in this weatherproof, 550-fill down insulation parka that’s designed to deflect rain, wind, sleet and snow all winter long. Darting and elastic at the waist create a flattering shape for warmth without weight.'),
+(19, 'Woods Women\'s Bennington Down Hooded Jacket\r\n', 'jacket4.png', 'Lightweight and versatile, the Women’s Bennington Down Puffy Jacket can function as an extra layer or standalone piece. The 700 Fill Power Allied Feather & Down® Duck Down warmth-to-weight ratio makes it the perfect all around insulator, while the ripstop nylon and down-proof shell’s DWR finish will make sure you’re protected from light precipitation.\r\n'),
+(20, 'Columbia Women\'s Lake 22 Long Down Jacket', 'jacket5.png', 'This water-resistant jacket with 650-fill-power down, Heat Seal Construction, and cozy long length ensures zero cold spots, making it a winter must-have.\r\n'),
+(21, 'Nike Core Solid Women\'s Swimsuit', 'swim1.png', ' This feminine yet functional suit offers a streamlined fit for reduced drag and more efficient performance in the water.\r\n'),
+(22, 'Nike Women\'s Psyche Mesh Racerback One Piece Swimsuit', 'swim2.png', 'Nike Swim Women’s Nike Psyche Mesh Racerback One Piece is a supportive, comfort-focused swimsuit with chlorine-resistance for lasting performance. This sporty one piece swimsuit has breathable, water draining mesh insets to help it dry quickly.\r\n'),
+(23, 'Speedo Women\'s Heather Quantum Splice One Piece', 'swim3.png', 'From swimming laps to training for meets, this heathered swimsuit delivers, offering lightweight durability to get you through every stroke. The contemporary design enhances your figure thanks to contoured paneling, a strappy back design and a built-in Hydroform bra that provides compressive support and comfort.\r\n'),
+(24, 'O\'Neill Women\'s Highway Stripe One Piece Swimsuit\r\n', 'swim4.png', 'Let the suit do the talking in O’Neill’s high neck halter one piece. The elegant cut of this style will have all eyes on you this season.\r\n'),
+(25, 'Nike Women\'s Flash Highneck One Piece Swimsuit\r\n', 'swim5.png', 'Nike Swim Women’s Flash Highneck One Piece features a high bust, moderate style back and standard legs for extra coverage without impacting movements. The iridescent chlorine-resistant fabric performs as well as it looks and the fully lined swimsuit has adjustable straps for a custom fit.\r\n'),
+(26, 'The North Face Women\'s Purrl Stitch Beanie', 'acc1.png', 'The North Face Purrl Stitch Beanie is a slouchy smooth-knit beanie with a double layer cuff delivers style and warmth when the temperature drops.\r\n'),
+(27, 'Kombi Women\'s P1 Liner', 'acc2.png', 'Stay warm and dry under your glove or mitten with this convenient, ultra-soft ACTIVE SPORT micropolyester glove liner. Equipped with POWERPOINTTouch technology for touchscreens.\r\n'),
+(28, 'Under Armour Women\'s Multi Hair Cap', 'acc3.png', 'UA Free Fit: pre-curved visor & unstructured front conforms to your head for a sleek, low profile fit.\r\n'),
+(29, 'Nike NBA Headband', 'acc4.png', 'The Nike NBA Headband features a breathable open knit to enhance air flow and sweat-wicking material to help keep you dry and comfortable.\r\n'),
+(30, 'Icebreaker Women’s Hike Mountaineer Crew Sock', 'acc5.png', 'For making big attempts on big mountains, put your trust in the Women’s Mountaineer mid calf sock. Fully and densely cushioned, the Mountaineer is engineered to fit great inside your boots, provide all day warmth and breathability, and give you a little extra cushioning. A seamless toe box prevents bunching, especially important during a long descent, and reinforced toe and heel areas mean they’ll be your trusted partner for many expeditions to come.\r\n'),
+(31, 'Fitbit Versa 2 Smartwatch', 'track1.png', 'Meet Fitbit Versa 2​™​—a smartwatch that elevates every moment. Use your voice to create alarms, set bedtime reminders or check the weather with Amazon Alexa Built-in.​ Take your look from the gym to the office with its modern and versatile design. Control your favourite playlists and podcasts with Spotify. ​Plus get Fitbit Pay​™​, daily in-app sleep quality scores, notifications, 24/7 heart rate and store 300+ songs for an experience that revolves around you.\r\n'),
+(32, 'Fitbit Versa Lite Edition Smart Watch', 'track2.png', ' Open a world of possibilities with Fitbit Versa™ Lite Edition, the versatile, everyday smartwatch. With all the core fitness and smart features, vibrant colors and an easy one-button design, this watch will inspire you to live boldly and make your goals reality.\r\n'),
+(33, 'Garmin vívofit 4 Activity Tracker', 'track3.png', 'The Garmin vívofit 4 activity tracker follows your progress 24/7 and lets you ditch the charging cord, thanks to its 1+ year battery life. It’s also safe for the pool or the shower, and its always-on color display is bright and easy to see, even in the sunlight. Let your personality shine through by customizing the screen with color themes, watch faces and text phrases or by swapping out the band for a different one. \r\n'),
+(34, 'Apple Watch Series 5 GPS 40MM', 'track4.png', 'Apple Watch Series 5, with an Always-On Retina display. You’ve never seen a watch like this. Apple Watch Series 5 has a display that’s always on, showing the time and important information—no need to raise your wrist. It helps you navigate with the built-in compass. Lets you check on your heart with the ECG app.1 Tracks your workouts and activity. And makes it easy to connect with the people and information you care about, right from your wrist.\r\n'),
+(35, 'Fitbit Versa 2 Smartwatch SE ', 'track5.png', 'The Fitbit Versa 2​™ Special Edition takes your experience to another level with a premium jacquard woven band, an extra classic silicone band and a 3-month free trial of Fitbit Premium. Use your voice to create alarms, set bedtime reminders or check the weather with Amazon Alexa Built-in.​ Take your look from the gym to the office with its modern and versatile design. Control your favourite playlists and podcasts with Spotify. ​Plus get Fitbit Pay​™​, daily in-app sleep quality scores, notifications, 24/7 heart rate and store 300+ songs for an experience that revolves around you.\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_products_categories`
+--
+
+CREATE TABLE `tbl_products_categories` (
+  `product_category_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_products_categories`
+--
+
+INSERT INTO `tbl_products_categories` (`product_category_id`, `product_id`, `category_id`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1),
+(6, 6, 2),
+(7, 7, 2),
+(8, 8, 2),
+(9, 9, 2),
+(10, 10, 2),
+(11, 11, 3),
+(12, 12, 3),
+(13, 13, 3),
+(14, 14, 3),
+(15, 15, 3),
+(16, 16, 4),
+(17, 17, 4),
+(18, 18, 4),
+(19, 19, 4),
+(20, 20, 4),
+(21, 21, 5),
+(22, 22, 5),
+(23, 23, 5),
+(24, 24, 5),
+(25, 25, 5),
+(26, 26, 6),
+(27, 27, 6),
+(28, 28, 6),
+(29, 29, 6),
+(30, 30, 6),
+(31, 31, 7),
+(32, 32, 7),
+(33, 33, 7),
+(34, 34, 7),
+(35, 35, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_products_colours`
+--
+
+CREATE TABLE `tbl_products_colours` (
+  `products_colours_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `colour_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_products_colours`
+--
+
+INSERT INTO `tbl_products_colours` (`products_colours_id`, `product_id`, `colour_id`) VALUES
+(1, 1, 1),
+(2, 2, 4),
+(3, 3, 3),
+(4, 4, 5),
+(5, 5, 2),
+(6, 6, 1),
+(7, 7, 4),
+(8, 8, 5),
+(9, 9, 2),
+(10, 10, 3),
+(11, 11, 1),
+(12, 12, 3),
+(13, 13, 5),
+(14, 14, 4),
+(15, 15, 2),
+(16, 16, 4),
+(17, 17, 3),
+(18, 18, 1),
+(19, 19, 5),
+(20, 20, 2),
+(21, 21, 1),
+(22, 22, 5),
+(23, 23, 4),
+(24, 24, 3),
+(25, 25, 2),
+(26, 26, 5),
+(27, 27, 1),
+(28, 28, 4),
+(29, 29, 3),
+(30, 30, 2),
+(31, 31, 1),
+(32, 32, 2),
+(33, 33, 3),
+(34, 34, 4),
+(35, 35, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_products_prices`
+--
+
+CREATE TABLE `tbl_products_prices` (
+  `product_price_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `price_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_products_prices`
+--
+
+INSERT INTO `tbl_products_prices` (`product_price_id`, `product_id`, `price_id`) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 4, 4),
+(5, 5, 5),
+(6, 6, 6),
+(7, 7, 7),
+(8, 8, 8),
+(9, 9, 9),
+(10, 10, 10),
+(11, 11, 11),
+(12, 12, 12),
+(13, 13, 13),
+(14, 14, 14),
+(15, 15, 15),
+(16, 16, 16),
+(17, 17, 17),
+(18, 18, 18),
+(19, 19, 19),
+(20, 20, 20),
+(21, 21, 21),
+(22, 22, 22),
+(23, 23, 23),
+(24, 24, 24),
+(25, 25, 25),
+(26, 26, 26),
+(27, 27, 27),
+(28, 28, 28),
+(29, 29, 29),
+(30, 30, 30),
+(31, 31, 31),
+(32, 32, 32),
+(33, 33, 33),
+(34, 34, 34),
+(35, 35, 35);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE `tbl_user` (
+  `user_id` int(11) NOT NULL,
+  `user_fname` varchar(100) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `user_pass` varchar(100) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `user_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_ip` varchar(100) NOT NULL,
+  `edited` tinyint(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tbl_categories`
+--
+ALTER TABLE `tbl_categories`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `tbl_colours`
+--
+ALTER TABLE `tbl_colours`
+  ADD PRIMARY KEY (`colour_id`);
+
+--
+-- Indexes for table `tbl_prices`
+--
+ALTER TABLE `tbl_prices`
+  ADD PRIMARY KEY (`price_id`);
+
+--
+-- Indexes for table `tbl_products`
+--
+ALTER TABLE `tbl_products`
+  ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `tbl_products_categories`
+--
+ALTER TABLE `tbl_products_categories`
+  ADD PRIMARY KEY (`product_category_id`);
+
+--
+-- Indexes for table `tbl_products_colours`
+--
+ALTER TABLE `tbl_products_colours`
+  ADD PRIMARY KEY (`products_colours_id`);
+
+--
+-- Indexes for table `tbl_products_prices`
+--
+ALTER TABLE `tbl_products_prices`
+  ADD PRIMARY KEY (`product_price_id`);
+
+--
+-- Indexes for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tbl_categories`
+--
+ALTER TABLE `tbl_categories`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tbl_colours`
+--
+ALTER TABLE `tbl_colours`
+  MODIFY `colour_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_prices`
+--
+ALTER TABLE `tbl_prices`
+  MODIFY `price_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `tbl_products`
+--
+ALTER TABLE `tbl_products`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `tbl_products_categories`
+--
+ALTER TABLE `tbl_products_categories`
+  MODIFY `product_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `tbl_products_colours`
+--
+ALTER TABLE `tbl_products_colours`
+  MODIFY `products_colours_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `tbl_products_prices`
+--
+ALTER TABLE `tbl_products_prices`
+  MODIFY `product_price_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
