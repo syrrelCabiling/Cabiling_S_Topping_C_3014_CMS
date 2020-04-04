@@ -4,27 +4,27 @@ class Movie
 
     private $conn;
 
-    // Note: update table names, column names in here
-    public $movie_table               = 'tbl_movies';
-    public $genre_table               = 'tbl_genre';
-    public $movie_genre_linking_table = 'tbl_mov_genre';
+    // Fetching tables from db
+    public $tbl_categories               = 'tbl_categories';
+    public $tbl_products               = 'tbl_products';
+    public $tbl_products_categories = 'tbl_products_categories';
 
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
-    public function getMovies()
+    public function getProducts()
     {
         //TODO:write the SQL query that returns all movies from the tbl_movies table
         // $query = 'SELECT * FROM '.$this->movies_table;
 
 
-        //TODO:write the SQL query that returns all movies with its genre
-        $query = 'SELECT m.*, GROUP_CONCAT(g.genre_name) as genre_name FROM ' . $this->movie_table . ' m';
-        $query .= ' LEFT JOIN ' . $this->movie_genre_linking_table . ' link ON link.movies_id = m.movies_id';
-        $query .= ' LEFT JOIN ' . $this->genre_table . ' g ON link.genre_id = g.genre_id ';
-        $query .= ' GROUP BY m.movies_id';
+        //TODO:write the SQL query that returns all products with its category
+        $query = 'SELECT m.*, GROUP_CONCAT(g.category) as category FROM ' . $this->tbl_products . ' m';
+        $query .= ' LEFT JOIN ' . $this->tbl_products_categories . ' link ON link.product_id = m.product_id';
+        $query .= ' LEFT JOIN ' . $this->tbl_categories . ' g ON link.category_id = g.category_id ';
+        $query .= ' GROUP BY m.product_id';
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -35,12 +35,12 @@ class Movie
         return $stmt;
     }
 
-    public function getMovieByGenre($genre){
-        $query = 'SELECT m.*, GROUP_CONCAT(g.genre_name) as genre_name FROM ' . $this->movie_table . ' m';
-        $query .= ' LEFT JOIN ' . $this->movie_genre_linking_table . ' link ON link.movies_id = m.movies_id';
+    public function getProductsByCategory($eachCategory){
+        $query = 'SELECT m.*, GROUP_CONCAT(g.category) as genre_name FROM ' . $this->tbl_products . ' m';
+        $query .= ' LEFT JOIN ' . $this->tbl_products_categories . ' link ON link.product_id = m.product_id';
         $query .= ' LEFT JOIN ' . $this->genre_table . ' g ON link.genre_id = g.genre_id ';
-        $query .= ' GROUP BY m.movies_id';
-        $query .= ' HAVING genre_name LIKE "%'.$genre.'%"';
+        $query .= ' GROUP BY m.product_id';
+        $query .= ' HAVING category LIKE "%'.$eachCategory.'%"';
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -51,13 +51,13 @@ class Movie
         return $stmt;
     }
 
-    public function getMovieByID($id)
+    public function getProductsByID($id)
     {
-        $query = 'SELECT m.*, GROUP_CONCAT(g.genre_name) as genre_name FROM ' . $this->movie_table . ' m';
-        $query .= ' LEFT JOIN ' . $this->movie_genre_linking_table . ' link ON link.movies_id = m.movies_id';
-        $query .= ' LEFT JOIN ' . $this->genre_table . ' g ON link.genre_id = g.genre_id ';
-        $query .= ' WHERE m.movies_id=' . $id;
-        $query .= ' GROUP BY m.movies_id';
+        $query = 'SELECT m.*, GROUP_CONCAT(g.category) as category FROM ' . $this->tbl_products . ' m';
+        $query .= ' LEFT JOIN ' . $this->tbl_products_categories . ' link ON link.product_id = m.product_id';
+        $query .= ' LEFT JOIN ' . $this->tbl_categories . ' g ON link.category_id = g.category_id ';
+        $query .= ' WHERE m.product_id=' . $id;
+        $query .= ' GROUP BY m.product_id';
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
