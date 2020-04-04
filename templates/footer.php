@@ -1,2 +1,1 @@
-
-<footer>This is the NEW footer <br> Copyright <?php echo date('Y'); ?> </footer>
+<footer class="footer">SportChek: For Her - Copyright <?php echo date('M/Y'); ?></footer>

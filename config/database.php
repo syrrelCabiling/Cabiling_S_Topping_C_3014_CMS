@@ -8,11 +8,10 @@ class Database
 
     private $username = "root";
 
-    private $password = "root"; //leave blank for windows
+    private $password = "root";
 
     private static $instance = null;
     public $conn;
-
 
     private function __construct(){
         $db_dsn = array(
@@ -40,11 +39,10 @@ class Database
             exit;
         }
     }
-
+    
     // get the database connection
     public function getConnection()
-    {
-        //$this->conn = null;
+    {   
         return $this->conn;
     }
 
@@ -52,9 +50,7 @@ class Database
         if(!self::$instance){
             self::$instance = new Database();
         }
+
         return self::$instance;
     }
 }
-
-?>
-
