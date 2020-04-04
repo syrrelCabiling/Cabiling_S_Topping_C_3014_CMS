@@ -14,26 +14,26 @@ $db       = Database::getInstance()->getConnection();
 // initialize object
 $product = new product($db);
 
-// query products
+// THis is where users can search for a product
 if (isset($_GET['id'])) {
     $stmt = $movie->getProductByID($_GET['id']);
 } else if(isset($_GET['category'])){
     $stmt = $product->getProductByCategory($_GET['category']);
 }else {
-    $stmt = $movie->getMovies();
+    $stmt = $movie->getProducts();
 }
 
 $num = $stmt->rowCount();
 
-// check if more than 0 record found
+//availability
 if ($num > 0) {
 
-    // movies array
+    //products
     $results = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $single_movie = $row;
-        $results[]    = $single_movie;
+        $single_product = $row;
+        $results[]    = $single_product;
     }
 
     //TODO:chat about JSON_PRETTY_PRINT vs not
@@ -41,7 +41,7 @@ if ($num > 0) {
 } else {
     echo json_encode(
         array(
-            "message" => "No movies found.",
+            "message" => "Sorry, that's not available.",
         )
     );
 }
