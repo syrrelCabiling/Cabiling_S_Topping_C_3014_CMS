@@ -16,12 +16,14 @@
 <body>
     <!-- user's name not showing up -->
     <h2>Welcome to your Dashboard <?php echo $_SESSION['user_name'];?>!</h2> 
-
+    <!-- USER -->
     <a href="admin_createuser.php">Create User</a>
     <a href="admin_edituser.php">Edit User</a>
+
+    <!-- products -->
+    <a href="admin_createProduct.php">Add Inventory</a>
+
     <a href="admin_logout.php">SIGN OUT</a>
-
-
-    <a href="admin_login.php">Sign out</a>
+    <!-- <a href="admin_login.php">Sign out</a> -->
 </body>
 </html>

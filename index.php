@@ -1,21 +1,22 @@
 <?php
 require_once 'load.php';
 
-if (isset($_GET['filter'])) {
-    //Filter
-    $args = array(
+if (isset($_GET['filterNav'])) {
+
+    //these are referenced back inside read.php under the function. 
+    $args = array( 
         'tbl' => 'tbl_products',
         'tbl2' => 'tbl_categories',
         'tbl3' => 'tbl_products_categories',
         'col' => 'product_id',
         'col2' => 'category_id',
         'col3' => 'category',
-        'filter' => $_GET['filter']
+        'filter' => $_GET['filter'],
     );
-    $getProducts = getProductsByFilter($args);
+    $getProductsByFilter = getProductsByFilter($args);
 } else {
     $tbl_products = 'tbl_products';
-    $getProducts = getAll($tbl_products);
+    $getProductsByFilter = getAll($tbl_products);
 }
 ?>
 
@@ -32,12 +33,13 @@ if (isset($_GET['filter'])) {
 </head>
 <body>
 <?php include 'templates/header.php';?>
-    <?php while($row = $getProducts->fetch(PDO::FETCH_ASSOC)):?>
+    <?php while($row = $getProductsByFilter->fetch(PDO::FETCH_ASSOC)):?>
+      
         <div class="product-item">
             <img class="prod_img" src="images/<?php echo $row['product_img']; ?>" alt="<?php echo $row['product_name'];?>"/>
             <h2><?php echo $row['product_name'];?>  </h2>
             <h2><?php echo $row['product_price'];?>  </h2>
-            <a href="details.php?id=<?php echo $row['product_id'];?>">Read More</a>
+            <a href="details.php?id=<?php echo $row['product_id']; ?>">Read More</a>
         </div>
     
     <?php endwhile?>
