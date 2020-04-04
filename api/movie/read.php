@@ -18,7 +18,7 @@ $product = new product($db);
 if (isset($_GET['id'])) {
     $stmt = $product->getProductByID($_GET['id']);
 } else if(isset($_GET['category'])){
-    $stmt = $product->getProductsByCategory($_GET['category']);
+    $stmt = $product->getProductsByFilter($_GET['category']);
 }else {
     $stmt = $product->getProducts();
 }

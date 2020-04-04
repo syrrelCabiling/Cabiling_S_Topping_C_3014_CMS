@@ -94,4 +94,24 @@ function editUser($id, $fname, $username, $password, $email){
 
     //if everything goes well, redirect users to index.php otherwise return some error message
 
+    // function deleteUser($id){
+    //     $pdo = Database::getInstance()->getConnection();
+    //     $delete_user_query = 'DELETE FROM tbl_user WHERE user_id = :id';
+    //     $delete_user_set = $pdo->prepare($delete_user_query);
+    //     $delete_user_result = $delete_user_set->execute(
+    //         array(
+    //             ':id'=>$id
+    //         )
+    //     );
+    
+    //     //If everything went through, redirect to admin_deleteuser.php
+    //     //Otherwise, return false
+    //     if($delete_user_result && $delete_user_set->rowCount() > 0){
+    //         redirect_to('admin_deleteuser.php');
+    //     }else{
+    //         return false;
+    //     }
+    // }
 ?>
+
+
