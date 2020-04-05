@@ -26,6 +26,7 @@
 </head>
 <body>
     <h2>Need to delete some inventory?</h2>
+    <a href="index.php">Go Back</a>
     <?php echo !empty($message)?$message:'';?>
     <table>
         <thead>

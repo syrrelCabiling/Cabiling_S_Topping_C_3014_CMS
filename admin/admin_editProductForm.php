@@ -2,10 +2,10 @@
     require_once '../load.php';
     confirm_logged_in();
 
-    $category_table = 'tbl_categories';
-    $categories = getAll($category_table);
+    $tbl_categories = 'tbl_categories';
+    $categories = getAll($tbl_categories);
 
-    if (isset($_GET['id'])) {
+
         $id = $_GET['id'];
         $getProduct = editSingleProduct($id);
 
@@ -13,14 +13,18 @@
             $message = $getProduct;
         }
     
-        if(isset($_POST['submit'])){
-        $pname = trim($_POST['product_name']);
-        $image = trim($_FILES['product_img']);
-        $description = trim($_POST['product_desc']);
-        $category  = trim($_POST['genList']);
-        $message = editProduct($id, $pname, $image, $description, $category);
+        if (isset($_POST['submit'])){
+     
+                $product_img   = trim($_FILES['product_img']);
+                $product_name   = trim($_POST['product_name']);
+                $product_desc    = trim($_POST['product_desc']);
+                $category   = trim($_POST['catDefaultList']);
+            
+        
+            $result = editProducts($id, $product_img, $product_name, $product_desc, $category);
+            $message = $result;
         }
-    }
+
 
 ?>
 <!DOCTYPE html>
@@ -33,25 +37,25 @@
 <body>
     <h2>Edit Product</h2>
     <?php echo !empty($message)? $message : '';?>
-    <form action="admin_editProductForm.php?id=<?php echo $id ?>" method="POST">
+    <form action="admin_editProductForm.php?id=<?php echo $id ?>" method="POST" enctype="multipart/form-data">
     <?php while ($info = $getProduct->fetch(PDO::FETCH_ASSOC)): ?>
             <label>Product Name:</label>
             <input type="text" name="product_name" value="<?php echo $info['product_name'];?>"><br><br>
 
             <label for="">Product Image:</label><br>
-    <input type="file" id="upload" class="custom-file-input" name="image" value="">
-    <label class="custom-file-label" for="image"><?php echo $info['product_img']; ?></label><br><br>
+            <input type="file" id="upload" class="custom-file-input" name="product_img" value="">
+            <label class="custom-file-label" for="product_img"><?php echo $info['product_img']; ?></label><br><br>
 
             <label>Product Description:</label>
             <input type="text" name="product_desc" value="<?php echo $info['product_desc'];?>"><br><br>
 
             <label>Product Category:</label><br>
-            <select name="genList">
+            <select name="catDefaultList">
             <option>Select Category..</option>
             <?php while ($row = $categories->fetch(PDO::FETCH_ASSOC)): ?>
                 <option value="<?php echo $row['category_id']?>"><?php echo $row['category'];?></option>
-            <?php endwhile;?>
-        </select>
+                <?php endwhile;?>
+            </select>
 
           
         <?php endwhile;?>

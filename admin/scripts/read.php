@@ -71,26 +71,26 @@ function editSingleProduct($id){
     }
 }
 
-function editProduct($id, $pname, $description){
+function editProduct($id, $product_name, $product_img, $product_desc, $category){
     //TODO: set up database connection
     $pdo = Database::getInstance()->getConnection();
 
     //TODO: Run the proper SQL query to update tbl_user with proper values
-    $update_product_query = 'UPDATE tbl_products SET product_name = :pname, product_description = :description,';
+    $update_product_query = 'UPDATE tbl_products SET product_name = :product_name, product_img = :product_img, product_desc = :product_desc, category = :category';
     $update_product_query .= ' WHERE product_id = :id';
     $update_product_set = $pdo->prepare($update_product_query);
     $update_product_result = $update_product_set->execute(
         array(
-            ':pname'=>$pname,
-            ':description'=>$description,
-           // ':img'=>$img,
-            ':id'=>$id
+            ':id' => $id,
+            ':product_name' => $product_name,
+            ':product_img' => $product_img,
+            ':product_desc' => $product_desc,
+            ':category' => $category,
         )
     );
 
-  
-    echo $update_product_set->debugDumpParams();
-    exit;
+    // echo $update_product_set->debugDumpParams();
+    // exit;
     //TODO: if everything goes well, redirect user to index.php
     // Otherwise, return some error message...
     if($update_product_result){
