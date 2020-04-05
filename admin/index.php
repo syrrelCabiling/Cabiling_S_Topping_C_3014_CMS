@@ -22,6 +22,8 @@
 
     <!-- products -->
     <a href="admin_createProduct.php">Add Inventory</a>
+    <a href="admin_editProduct.php">Edit Inventory</a>
+    <a href="admin_deleteProduct.php">Delete Inventory</a>
 
     <a href="index.php">See Inventory</a>
     <a href="admin_logout.php">SIGN OUT</a>
