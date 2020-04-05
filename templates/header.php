@@ -3,7 +3,7 @@
 <img src="images/sportcheckforher.jpg" alt="logo" class="logo">
     <a href="admin/admin_login.php" class="login">Login</a>
 </div>
-<form action="search.php" method="POST">
+                    <form action="search.php" method="POST">
                         <input type="text" name="search" placeholder="Looking for something? Start here...">
                         <button type="submit" name="submit-search">Search</button>
                     </form>
