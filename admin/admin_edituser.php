@@ -1,23 +1,29 @@
-<?php 
-    require_once '../load.php';
-    confirm_logged_in();
+<?php
 
-    $id = $_SESSION['user_id'];
-    $user = getSingleUser($id);
+require_once '../load.php';
+confirm_logged_in();
 
-    if(is_string($user)){
-        $message = $user;
-    }
+$id = $_SESSION['user_id'];
+$user = getSingleUser($id);
 
-    if(isset($_POST['submit'])){
-        $fname = trim($_POST['fname']);
-        $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
-        $email = trim($_POST['email']);
+if(is_string($user)){
+    $message = $user;
 
-        $message = editUser($id, $fname, $username, $password, $email);
-    }
+}
+
+if(isset($_POST['submit'])){
+    $fname = trim($_POST['fname']);
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+    $email = trim($_POST['email']);
+
+    $message = editUser($id, $fname, $username, $password, $email);
+
+    
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,20 +35,22 @@
     <h2>Edit User</h2>
     <?php echo !empty($message)? $message : '';?>
     <form action="admin_edituser.php" method="post">
-        <?php while($info = $user->fetch(PDO::FETCH_ASSOC)): ?>
-            <label>First Name:</label>
-            <input type="text" name="fname" value="<?php echo $info['user_fname'];?>"><br><br>
 
-            <label>Username:</label>
-            <input type="text" name="username" value="<?php echo $info['user_name'];?>"><br><br>
+<?php while($info = $user->fetch(PDO::FETCH_ASSOC)): ?>
 
-            <label>Password:</label>
-            <input type="text" name="password" value="<?php echo $info['user_pass'];?>"><br><br>
+        <label for="">First Name:</label>
+        <input type="text" name="fname" value="<?php echo $info['user_fname'];?>"><br><br>
+    
+        <label for="">Username:</label>
+        <input type="text" name="username" value="<?php echo $info['user_name'];?>"><br><br>
+        
+        <label for="">Password:</label>
+        <input type="text" name="password" value="<?php echo $info['user_pass'];?>"><br><br>
 
-            <label>Email:</label>
-            <input type="text" name="email" value="<?php echo $info['user_email'];?>"><br><br>
-        <?php endwhile;?>
-        <button type="submit" name="submit">Edit Account</button>
+        <label for="">Email:</label>
+        <input type="text" name="email" value="<?php echo $info['user_email'];?>"><br><br>
+<?php endwhile;?>
+    <button type="submit" name="submit">SAVE EDIT</button>
     </form>
 </body>
 </html>

@@ -1,7 +1,10 @@
-<?php
+<?php 
     require_once '../load.php';
     confirm_logged_in();
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,16 +14,16 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h2>Welcome! <?php echo $_SESSION['user_name'];?></h2>
-    
+    <!-- user's name not showing up -->
+    <h2>Welcome to your Dashboard <?php echo $_SESSION['user_name'];?>!</h2> 
+    <!-- USER -->
     <a href="admin_createuser.php">Create User</a>
     <a href="admin_edituser.php">Edit User</a>
-    <a href="admin_editproduct.php">Edit Product</a>
-    <a href="admin_deleteuser.php">Delete User</a>
-    <a href="admin_deleteproduct.php">Delete Product</a>
 
-    <a href="admin_addproduct.php">Add Product</a>
+    <!-- products -->
+    <a href="admin_createProduct.php">Add Inventory</a>
 
-    <a href="admin_logout.php">Sign Out</a>
+    <a href="admin_logout.php">SIGN OUT</a>
+    <!-- <a href="admin_login.php">Sign out</a> -->
 </body>
 </html>
