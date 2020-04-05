@@ -3,7 +3,7 @@
 require_once 'load.php';
 
 if(isset($_POST['submit-search'])){
-    $searchResults = searchProduct();
+    $searchResults = searchProducts();
 }
 ?>
 
@@ -24,7 +24,7 @@ if(isset($_POST['submit-search'])){
             <img src="images/<?php echo $row['product_img']; ?>" alt="<?php echo $row['product_name']; ?>" />
             <h2><?php echo $row['product_name']; ?></h2>
 
-            <a class="readMore" href="details.php?id=<?php echo $row['product_id']; ?>">Read More...</a>
+            <a class="readMore" href="details.php?id=<?php echo $row['product_id']; ?>">Read More</a>
         </div>
     <?php endwhile;?>
     

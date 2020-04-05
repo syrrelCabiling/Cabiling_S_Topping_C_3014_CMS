@@ -4,7 +4,7 @@
     <a href="admin/admin_login.php" class="login">Login</a>
 </div>
 <form action="search.php" method="POST">
-                        <input type="text" name="search" placeholder="Search Our Products.." class="searchInput">
+                        <input type="text" name="search" placeholder="Looking for something? Start here...">
                         <button type="submit" name="submit-search">Search</button>
                     </form>
     <nav class="filterNav">
@@ -16,8 +16,8 @@
             <li><a href="index.php?filter=Swim">Swim</a></li>
             <li><a href="index.php?filter=Accessories">Accessories</a></li>
             <li><a href="index.php?filter=Fitness Trackers">Fitness Trackers</a></li>
-            <li class="topnav">
-            </li>
+            <!-- <li class="topnav">
+            </li> -->
         </ul>
     </nav>
 
