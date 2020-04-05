@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 04, 2020 at 12:33 PM
+-- Generation Time: Apr 05, 2020 at 09:22 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -47,80 +47,6 @@ INSERT INTO `tbl_categories` (`category_id`, `category`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_colours`
---
-
-CREATE TABLE `tbl_colours` (
-  `colour_id` int(11) NOT NULL,
-  `colour` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tbl_colours`
---
-
-INSERT INTO `tbl_colours` (`colour_id`, `colour`) VALUES
-(1, 'Black'),
-(2, 'Gray'),
-(3, 'White'),
-(4, 'Pink'),
-(5, 'Blue');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_prices`
---
-
-CREATE TABLE `tbl_prices` (
-  `price_id` int(11) NOT NULL,
-  `price` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tbl_prices`
---
-
-INSERT INTO `tbl_prices` (`price_id`, `price`) VALUES
-(1, '$65.99'),
-(2, '$74.99'),
-(3, '$219.99'),
-(4, '$99.99'),
-(5, '$149.99'),
-(6, '$22.50'),
-(7, '$22.49'),
-(8, '$26.25'),
-(9, ' $15.97'),
-(10, '$22.97'),
-(11, '$50.97'),
-(12, '$29.99'),
-(13, '$34.50'),
-(14, '$26.24'),
-(15, '$20.97'),
-(16, '$109.99'),
-(17, '$184.99'),
-(18, '$399.99'),
-(19, '$200'),
-(20, ' $219.99'),
-(21, ' $45'),
-(22, '$39.97'),
-(23, '$62.97'),
-(24, '$49.98'),
-(25, '$53.97'),
-(26, '$34.99'),
-(27, '$19.99'),
-(28, '$34.99'),
-(29, '$12.75'),
-(30, '$37.99'),
-(31, '$249.95'),
-(32, '$199.95'),
-(33, '$99.99'),
-(34, '$529'),
-(35, '$279.95');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_products`
 --
 
@@ -138,7 +64,7 @@ CREATE TABLE `tbl_products` (
 --
 
 INSERT INTO `tbl_products` (`product_id`, `product_name`, `product_img`, `product_desc`, `product_colour`, `product_price`) VALUES
-(1, 'Nike Women\'s Revolution 5 Running Shoes', 'shoes1.jpg', 'The Nike Women’s Revolution 5 Running Shoe cushions your stride with soft foam to keep you running in comfort. Lightweight knit material wraps your foot in breathable support, while a minimalist design fits in anywhere your day takes you.\r\n', 'Black', '$65.99'),
+(1, 'Nike Women\'s Revolution 5 Running Shoes', 'da1beeac1a1017ced710012f13d72b67.jpg', 'The Nike Women’s Revolution 5 Running Shoe cushions your stride with soft foam to keep you running in comfort. Lightweight knit material wraps your foot in breathable support, while a minimalist design fits in anywhere your day takes you.', 'Black', '$65.99'),
 (2, 'Nike Women\'s Renew Arena Running Shoes', 'shoes2.jpg', 'The Nike Renew Arena Men’s Running Shoe wraps your foot in a versatile woven material that outperforms your run. The supportive upper offers miles of comfort, while the lightweight Nike Renew technology underfoot gives a smooth, stable ride.\r\n', 'Pink', ' $74.99'),
 (3, 'ASICS Women\'s GEL Kayano 26 Running Shoes\r\n', 'shoes3.jpg', 'Boost your performance in bold style with the GEL-KAYANO™ 26 Platinum running shoe from ASICS. This special edition take on our classic stability running shoe features the same performance-enhancing technologies in an eye-catching, futuristic design. \r\n', 'White', '$219.99'),
 (4, 'Saucony Women\'s Shift Trail Running Shoes', 'shoes4.jpg', 'Take this show off road. For whatever path you lead, the rugged utility of the Saucony Women’s Shift Trail Running Shoe has you covered in trailblazing style. \r\n', 'Blue', '$99.99'),
@@ -225,113 +151,19 @@ INSERT INTO `tbl_products_categories` (`product_category_id`, `product_id`, `cat
 (32, 32, 7),
 (33, 33, 7),
 (34, 34, 7),
-(35, 35, 7);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_products_colours`
---
-
-CREATE TABLE `tbl_products_colours` (
-  `products_colours_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `colour_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tbl_products_colours`
---
-
-INSERT INTO `tbl_products_colours` (`products_colours_id`, `product_id`, `colour_id`) VALUES
-(1, 1, 1),
-(2, 2, 4),
-(3, 3, 3),
-(4, 4, 5),
-(5, 5, 2),
-(6, 6, 1),
-(7, 7, 4),
-(8, 8, 5),
-(9, 9, 2),
-(10, 10, 3),
-(11, 11, 1),
-(12, 12, 3),
-(13, 13, 5),
-(14, 14, 4),
-(15, 15, 2),
-(16, 16, 4),
-(17, 17, 3),
-(18, 18, 1),
-(19, 19, 5),
-(20, 20, 2),
-(21, 21, 1),
-(22, 22, 5),
-(23, 23, 4),
-(24, 24, 3),
-(25, 25, 2),
-(26, 26, 5),
-(27, 27, 1),
-(28, 28, 4),
-(29, 29, 3),
-(30, 30, 2),
-(31, 31, 1),
-(32, 32, 2),
-(33, 33, 3),
-(34, 34, 4),
-(35, 35, 5);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_products_prices`
---
-
-CREATE TABLE `tbl_products_prices` (
-  `product_price_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `price_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tbl_products_prices`
---
-
-INSERT INTO `tbl_products_prices` (`product_price_id`, `product_id`, `price_id`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 4),
-(5, 5, 5),
-(6, 6, 6),
-(7, 7, 7),
-(8, 8, 8),
-(9, 9, 9),
-(10, 10, 10),
-(11, 11, 11),
-(12, 12, 12),
-(13, 13, 13),
-(14, 14, 14),
-(15, 15, 15),
-(16, 16, 16),
-(17, 17, 17),
-(18, 18, 18),
-(19, 19, 19),
-(20, 20, 20),
-(21, 21, 21),
-(22, 22, 22),
-(23, 23, 23),
-(24, 24, 24),
-(25, 25, 25),
-(26, 26, 26),
-(27, 27, 27),
-(28, 28, 28),
-(29, 29, 29),
-(30, 30, 30),
-(31, 31, 31),
-(32, 32, 32),
-(33, 33, 33),
-(34, 34, 34),
-(35, 35, 35);
+(35, 35, 7),
+(36, 36, 1),
+(37, 37, 1),
+(38, 38, 1),
+(39, 36, 1),
+(40, 37, 1),
+(41, 38, 1),
+(42, 36, 1),
+(43, 37, 1),
+(44, 38, 1),
+(45, 39, 2),
+(46, 40, 1),
+(47, 41, 1);
 
 -- --------------------------------------------------------
 
@@ -351,6 +183,14 @@ CREATE TABLE `tbl_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`user_id`, `user_fname`, `user_name`, `user_pass`, `user_email`, `user_date`, `user_ip`, `edited`) VALUES
+(1, 'Admin1', 'admin', '123', 'me@you.com', '2020-04-05 14:49:08', '::1', 1),
+(2, 'dummy', 'dummy', '123', 'me@you.com', '2020-04-05 21:17:28', '', 1);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -359,18 +199,6 @@ CREATE TABLE `tbl_user` (
 --
 ALTER TABLE `tbl_categories`
   ADD PRIMARY KEY (`category_id`);
-
---
--- Indexes for table `tbl_colours`
---
-ALTER TABLE `tbl_colours`
-  ADD PRIMARY KEY (`colour_id`);
-
---
--- Indexes for table `tbl_prices`
---
-ALTER TABLE `tbl_prices`
-  ADD PRIMARY KEY (`price_id`);
 
 --
 -- Indexes for table `tbl_products`
@@ -383,18 +211,6 @@ ALTER TABLE `tbl_products`
 --
 ALTER TABLE `tbl_products_categories`
   ADD PRIMARY KEY (`product_category_id`);
-
---
--- Indexes for table `tbl_products_colours`
---
-ALTER TABLE `tbl_products_colours`
-  ADD PRIMARY KEY (`products_colours_id`);
-
---
--- Indexes for table `tbl_products_prices`
---
-ALTER TABLE `tbl_products_prices`
-  ADD PRIMARY KEY (`product_price_id`);
 
 --
 -- Indexes for table `tbl_user`
@@ -413,46 +229,22 @@ ALTER TABLE `tbl_categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `tbl_colours`
---
-ALTER TABLE `tbl_colours`
-  MODIFY `colour_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `tbl_prices`
---
-ALTER TABLE `tbl_prices`
-  MODIFY `price_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
---
 -- AUTO_INCREMENT for table `tbl_products`
 --
 ALTER TABLE `tbl_products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `tbl_products_categories`
 --
 ALTER TABLE `tbl_products_categories`
-  MODIFY `product_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
---
--- AUTO_INCREMENT for table `tbl_products_colours`
---
-ALTER TABLE `tbl_products_colours`
-  MODIFY `products_colours_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
---
--- AUTO_INCREMENT for table `tbl_products_prices`
---
-ALTER TABLE `tbl_products_prices`
-  MODIFY `product_price_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `product_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
