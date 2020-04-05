@@ -1,34 +1,35 @@
 <?php
 
-function getAll($tbl) {
+function getAll($tbl)
+{
     $pdo = Database::getInstance()->getConnection();
-    $queryAll = 'SELECT * FROM '.$tbl;
+    $queryAll = 'SELECT * FROM ' . $tbl;
     $results = $pdo->query($queryAll);
 
-    if($results){
+    if ($results) {
         return $results;
-    }else{
+    } else {
         return 'There was a problem accessing this info';
     }
 }
 
-function getSingleProduct($tbl, $col, $id){
-    //TODO: finish the function based on getAll, this time only return one product's info
+function getSingleProduct($tbl, $col, $id)
+{
+    //TODO: finish the function based on getAll, this time only return
+    // one movie's fields
 
     $pdo = Database::getInstance()->getConnection();
+    // $query = 'SELECT * FROM '.$tbl.' WHERE '$col' = '.$id;
     $query = "SELECT * FROM $tbl WHERE $col = $id";
-    //ORRRRR $query = 'SELECT * FROM '.$tbl.' WHERE '$col' = '$id;
-
     $results = $pdo->query($query);
 
-    if($results){
+    if ($results) {
         return $results;
-    }else{
+    } else {
         return 'There was a problem accessing this info';
     }
 
 }
-
 
 function getProductsByFilter($args)
 {
@@ -41,10 +42,77 @@ function getProductsByFilter($args)
 
     $results = $pdo->query($filterQuery);
 
-
     if ($results) {
         return $results;
     } else {
         return 'There was a problem accessing this info';
     }
 }
+
+
+function editSingleProduct($id){
+    $pdo = Database::getInstance()->getConnection();
+    //TODO: execute the proper SQL query to fetch the user data whose user_id = $id
+    $get_product_query = 'SELECT * FROM tbl_products WHERE product_id = :id';
+    $get_product_set = $pdo->prepare($get_product_query);
+    $get_product_result = $get_product_set->execute(
+        array(
+            ':id'=>$id
+        )
+    );
+
+    
+    //TODO: if the execution is successful, return the user data
+    // Otherwise, return an error message
+    if($get_product_result){
+        return $get_product_set;
+    }else{
+        return 'There was a problem accessing the user';
+    }
+}
+
+function editProduct($id, $pname, $description){
+    //TODO: set up database connection
+    $pdo = Database::getInstance()->getConnection();
+
+    //TODO: Run the proper SQL query to update tbl_user with proper values
+    $update_product_query = 'UPDATE tbl_products SET product_name = :pname, product_description = :description,';
+    $update_product_query .= ' WHERE product_id = :id';
+    $update_product_set = $pdo->prepare($update_product_query);
+    $update_product_result = $update_product_set->execute(
+        array(
+            ':pname'=>$pname,
+            ':description'=>$description,
+           // ':img'=>$img,
+            ':id'=>$id
+        )
+    );
+
+  
+    echo $update_product_set->debugDumpParams();
+    exit;
+    //TODO: if everything goes well, redirect user to index.php
+    // Otherwise, return some error message...
+    if($update_product_result){
+        redirect_to('index.php');
+    }else{
+        return 'Guess you got canned...';
+    }
+}
+
+function searchProduct(){
+
+    $pdo = Database::getInstance()->getConnection();
+    $search = $_POST['search'];
+    $select_product_query = "SELECT * FROM tbl_products WHERE product_name LIKE '%$search%' OR product_description LIKE '%$search%'";
+    $result = $pdo->query($select_product_query);
+
+    if($result){
+        return $result;
+    } else {
+        echo 'There are no results matching your search';
+    
+}
+}
+
+

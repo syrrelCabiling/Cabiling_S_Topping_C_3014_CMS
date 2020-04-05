@@ -8,31 +8,30 @@ include_once '../../config/database.php';
 include_once '../objects/movie.php';
 
 // instantiate database and movie object
-//$database = new Database(); OLD
 $db       = Database::getInstance()->getConnection();
 
 // initialize object
-$product = new product($db);
+$product = new Product($db);
 
-// THis is where users can search for a product
+// query movies
 if (isset($_GET['id'])) {
     $stmt = $product->getProductByID($_GET['id']);
 } else if(isset($_GET['category'])){
-    $stmt = $product->getProductsByFilter($_GET['category']);
+    $stmt = $product->getProductByCategory($_GET['category']);
 }else {
     $stmt = $product->getProducts();
 }
 
 $num = $stmt->rowCount();
 
-//availability
+// check if more than 0 record found
 if ($num > 0) {
 
-    //products
+    // movies array
     $results = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $getSingleProduct = $row;
+        $single_product = $row;
         $results[]    = $single_product;
     }
 
@@ -41,7 +40,7 @@ if ($num > 0) {
 } else {
     echo json_encode(
         array(
-            "message" => "Sorry, that's not available.",
+            "message" => "No products found.",
         )
     );
 }

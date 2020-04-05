@@ -25,48 +25,46 @@ function createUser($fname, $username, $password, $email){
     }
 }
 
-?>
-
-
-<?php
-
-
-//TODO execute the proper SQL query to fetch the user data
-function getSingleUser($id)
-{
+function getSingleUser($id){
     $pdo = Database::getInstance()->getConnection();
-
+    //TODO: execute the proper SQL query to fetch the user data whose user_id = $id
     $get_user_query = 'SELECT * FROM tbl_user WHERE user_id = :id';
     $get_user_set = $pdo->prepare($get_user_query);
     $get_user_result = $get_user_set->execute(
         array(
             ':id'=>$id
-            
         )
     );
 
-
-//TODO if the execution is successful, return the user data otherwide return an error message
+    //TODO: if the execution is successful, return the user data
+    // Otherwise, return an error message
     if($get_user_result){
         return $get_user_set;
     }else{
-        return 'not today sorry!';
+        return 'There was a problem accessing the user';
     }
 }
-?>
 
+function getAllUsers(){
+    $pdo = Database::getInstance()->getConnection();
 
+    $get_user_query = 'SELECT * FROM tbl_user';
+    $users = $pdo->query($get_user_query);
 
-<?php 
+    if($users){
+        return $users;
+    }else{
+        return false;
+    }
+}
+
 function editUser($id, $fname, $username, $password, $email){
-
-    $user_is_edited = 1; //targeting the 'edited' column in the db which is set as boolean and is null by default
     //TODO: set up database connection
     $pdo = Database::getInstance()->getConnection();
 
     //TODO: Run the proper SQL query to update tbl_user with proper values
     $update_user_query = 'UPDATE tbl_user SET user_fname = :fname, user_name = :username,';
-    $update_user_query .= ' user_pass=:password, user_email =:email, edited =:edited WHERE user_id = :id';
+    $update_user_query .= ' user_pass=:password, user_email =:email WHERE user_id = :id';
     $update_user_set = $pdo->prepare($update_user_query);
     $update_user_result = $update_user_set->execute(
         array(
@@ -74,7 +72,6 @@ function editUser($id, $fname, $username, $password, $email){
             ':username'=>$username,
             ':password'=>$password,
             ':email'=>$email,
-            ':edited'=>$user_is_edited,
             ':id'=>$id
         )
     );
@@ -86,32 +83,26 @@ function editUser($id, $fname, $username, $password, $email){
     // Otherwise, return some error message...
     if($update_user_result){
         redirect_to('index.php');
-        
     }else{
-        return 'Sorry! Not today!';
+        return 'Guess you got canned...';
     }
 }
 
-    //if everything goes well, redirect users to index.php otherwise return some error message
+function deleteUser($id){
+    $pdo = Database::getInstance()->getConnection();
+    $delete_user_query = 'DELETE FROM tbl_user WHERE user_id = :id';
+    $delete_user_set = $pdo->prepare($delete_user_query);
+    $delete_user_result = $delete_user_set->execute(
+        array(
+            ':id'=>$id
+        )
+    );
 
-    // function deleteUser($id){
-    //     $pdo = Database::getInstance()->getConnection();
-    //     $delete_user_query = 'DELETE FROM tbl_user WHERE user_id = :id';
-    //     $delete_user_set = $pdo->prepare($delete_user_query);
-    //     $delete_user_result = $delete_user_set->execute(
-    //         array(
-    //             ':id'=>$id
-    //         )
-    //     );
-    
-    //     //If everything went through, redirect to admin_deleteuser.php
-    //     //Otherwise, return false
-    //     if($delete_user_result && $delete_user_set->rowCount() > 0){
-    //         redirect_to('admin_deleteuser.php');
-    //     }else{
-    //         return false;
-    //     }
-    // }
-?>
-
-
+    //If everything went through, redirect to admin_deleteuser.php
+    //Otherwise, return false
+    if($delete_user_result && $delete_user_set->rowCount() > 0){
+        redirect_to('admin_deleteuser.php');
+    }else{
+        return false;
+    }
+}
