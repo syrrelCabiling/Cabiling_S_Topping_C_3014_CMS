@@ -1,29 +1,24 @@
 # Cabiling_S_Topping_C_3014_CMS
-A CMS for SportCheck: For Her Edition
+A simple CMS for SportCheck: For Her Edition
 
 #### Prerequisites
-1. Install `Docker` from [https://docs.docker.com/install/] 
-2. IF you are in Linux, install `docker-compose` from [https://docs.docker.com/install/]
+MAMP
 
 #### Set up
-1. Clone the repo
+1. Make sure you have imported the right database on phpMyAdmin
+
+2. Clone the repo in htdocs
    ```
-   git clone https://github.com/syrrelCabiling/Cabiling_S_Topping_C_r3.git
+   git clone https://github.com/syrrelCabiling/Cabiling_S_Topping_C_3014_CMS.git
    ```
-2. Open the folder and run docker-compose
+3. Open the folder
    ```
-   cd movies_cms
-   docker-compose up
-   ```
-3. When you finished work, you can turn if off by doing 
-   ```
-   docker-compose down
+   cd Cabiling_S_Topping_C_3014_CMS
    ```
 
 #### URLs
-1. Your project is up in `http://localhost:8010` which is mapping to the `movies_cms` folder
-2. The phpMyAdmin is in `http://localhost:8011` with the credential of 
-```
-Username: docker_u
-Password: docker_p
-```# Cabiling_S_Topping_C_r3
+Open it through http://localhost:8888/Cabiling_S_Topping_C_3014_CMS/
+
+#### Resources
+1. Most resources were from the first 3 research projects that we did
+2. Most codes were created in class with Pan.

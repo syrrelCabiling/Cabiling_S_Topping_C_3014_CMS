@@ -80,48 +80,43 @@ function getAllProducts(){
 }
 
 
-function editProducts($getProduct)
+function editProducts($id, $product_name, $product_price, $product_img, $product_desc)
 {
 
-    try {
         $pdo = Database::getInstance()->getConnection();
+        $image_path = '../images/';
+        $upload_file    = pathinfo($product_img['name']);
+        $generated_name     = md5($upload_file['filename'].time());
+        $generated_filename = $generated_name.'.'.$upload_file['extension'];
+        $targetpath         = $image_path.$generated_filename;
+        $accepted_types = array('gif', 'jpg', 'jpe', 'png', 'jpeg', 'webp');
+        if (!in_array($upload_file['extension'], $accepted_types)) {
+            throw new Exception('Wrong file type!');
+        }
+        if (!move_uploaded_file($product_img['tmp_name'], $targetpath)) {
+            throw new Exception('Failed to move uploaded file, check permission!');
+        }
 
-        $update_product_query = 'UPDATE tbl_products SET product_name = :product_name, product_img = :product_img, product_desc = :product_desc, category = :category WHERE product_ID = :id';
+        $update_product_query = 'UPDATE tbl_products SET product_name = :product_name, product_price = :product_price, product_img = :product_img, product_desc = :product_desc WHERE product_id = :id';
 
         $update_set = $pdo->prepare($update_product_query);
         $update_product_result = $update_set->execute(
         array(
-            ':id' => $getProduct['id'],
-            ':product_name' => $getProduct['product_name'],
-            ':product_img' => $getProduct['product_img'],
-            ':product_desc' => $getProduct['product_desc'],
-            ':category' => $getProduct['category'],
+            ':id'=>$id,
+            ':product_name'=>$product_name,
+            ':product_price'=>$product_price,
+            ':product_img'=>$generated_filename,
+            ':product_desc'=>$product_desc,
 
         )
         );
-
-        $this_product_id = $getProduct['id'];
-
-        if ($update_product_result && !empty($this_product_id)) {
-            $update_category_query = 'UPDATE tbl_products_categories SET category_ID = :category_id WHERE product_ID = :product_id';
-            $update_category = $pdo->prepare($update_category_query);
-
-            $update_category_result = $update_category->execute(
-                array(
-                    ':product_id' => $this_product_id,
-                    ':category_id' => $getProduct['category'],
-                )
-            );
+        if($update_product_result){
+            redirect_to('index.php');
+        }else{
+            return 'Guess you got canned...';
         }
-
-        redirect_to('index.php');
-
-    } catch (Exception $e) {
-        $error = $e->getMessage();
-        return $error;
     }
 
-}
 
 
 
@@ -135,9 +130,7 @@ function deleteProduct($id){
             ':id'=>$id
         )
     );
-
-    //If everything went through, redirect to admin_deleteuser.php
-    //Otherwise, return false
+//return 
     if($delete_product_result && $delete_product_set->rowCount() > 0){
         redirect_to('admin_deleteProduct.php');
     }else{

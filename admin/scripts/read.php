@@ -89,10 +89,6 @@ function editProduct($id, $product_name, $product_img, $product_desc, $category)
         )
     );
 
-    // echo $update_product_set->debugDumpParams();
-    // exit;
-    //TODO: if everything goes well, redirect user to index.php
-    // Otherwise, return some error message...
     if($update_product_result){
         redirect_to('index.php');
     }else{
