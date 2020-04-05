@@ -100,17 +100,17 @@ function editProduct($id, $pname, $description){
     }
 }
 
-function searchProduct(){
+function searchProducts(){
 
     $pdo = Database::getInstance()->getConnection();
     $search = $_POST['search'];
-    $select_product_query = "SELECT * FROM tbl_products WHERE product_name LIKE '%$search%' OR product_description LIKE '%$search%'";
+    $select_product_query = "SELECT * FROM tbl_products WHERE product_name LIKE '%$search%' OR product_desc LIKE '%$search%'";
     $result = $pdo->query($select_product_query);
 
     if($result){
         return $result;
     } else {
-        echo 'There are no results matching your search';
+        echo 'Unfortunately, it might be out of stock or not available. Check back later on!';
     
 }
 }
